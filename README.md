@@ -1,0 +1,1 @@
+# slugify-symfony-bundle
