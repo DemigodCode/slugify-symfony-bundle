@@ -39,9 +39,8 @@ $ composer require cocur/slugify-symfony-bundle
 ```
 
 Slugify requires the Multibyte String extension from PHP. Typically you can use the configure option `--enable-mbstring` while compiling PHP. More information can be found in the [PHP documentation](http://php.net/manual/en/mbstring.installation.php).
- 
-Slugify contains a Symfony bundle and service definition that allow you to use it as a service in your Symfony
-application. The code resides in the `Cocur\Slugify\Bridge\Symfony` namespace and you only need to add the bundle class
+
+You only need to add the bundle class
 to your `AppKernel.php`:
 
 ```php
@@ -53,7 +52,7 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             // ...
-            new Cocur\Slugify\Bridge\Symfony\CocurSlugifyBundle(),
+            new Cocur\SlugifySymfonyBundle\SlugifyBundle(),
         );
         // ...
     }
@@ -84,10 +83,11 @@ You can set the following configuration settings in `config.yml` to adjust the s
 
 ```yaml
 cocur_slugify:
-    lowercase: <boolean>
-    separator: <string>
-    regexp: <string>
-    rulesets: { } # List of rulesets: https://github.com/cocur/slugify/tree/master/Resources/rules
+    default:
+        lowercase: <boolean>
+        separator: <string>
+        regexp: <string>
+        rulesets: { } # List of rulesets: https://github.com/cocur/slugify/tree/master/Resources/rules
 ```
 
 Usage
