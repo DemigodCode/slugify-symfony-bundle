@@ -93,47 +93,7 @@ cocur_slugify_bundle:
 Usage
 -----
 
-Generate a slug:
-
-```php
-
-$slugify = $container->get('cocur_slugify');
-echo $slugify->slugify('Hello World!'); // hello-world
-```
-
-You can also change the separator used by `Slugify`:
-
-```php
-echo $slugify->slugify('Hello World!', '_'); // hello_world
-```
-
-The library also contains `Cocur\Slugify\SlugifyInterface`. Use this interface whenever you need to type hint an
-instance of `Slugify`.
-
-To add additional transliteration rules you can use the `addRule()` method.
-
-```php
-$slugify->addRule('i', 'ey');
-echo $slugify->slugify('Hi'); // hey
-```
-
-### Rulesets
-
-Many of the transliterations rules used in Slugify are specific to a language. These rules are therefore categorized
-using rulesets. Rules for the most popular are activated by default in a specific order. You can change which rulesets
-are activated and the order in which they are activated. The order is important when there are conflicting rules in
-different languages. For example, in German `ä` is transliterated with `ae`, in Turkish the correct transliteration is
-`a`. By default the German transliteration is used since German is used more often on the internet. If you want to use
-prefer the Turkish transliteration you have to possibilities. You can activate it after creating the constructor:
-
-```php
-$slugify = $container->get('cocur_slugify');
-$slugify->slugify('ä'); // -> "ae"
-$slugify->activateRuleSet('turkish');
-$slugify->slugify('ä'); // -> "a"
-```
-
-You can find a list of the available rulesets in [Resources/rules](https://github.com/cocur/slugify/tree/master/Resources/rules).
+For general usage of cocur/slugify please see [here](https://github.com/cocur/slugify/).
 
 ### More options
 
@@ -145,31 +105,6 @@ By default Slugify will use dashes as separators. If you want to use a different
 
 By default Slugify will remove leading and trailing separators before returning the slug. If you do not want the slug to 
 be trimmed you can set the `trim` option to false.
-
-### Changing options on the fly
-
-You can overwrite any of the above options on the fly by passing an options array as second argument to the `slugify()`
-method. For example:
-
-```php
-$slugify = $container->get('cocur_slugify');
-$slugify->slugify('Hello World', ['lowercase' => false]); // -> "Hello-World"
-```
-
-You can also modify the separator this way:
-
-```php
-$slugify = $container->get('cocur_slugify');
-$slugify->slugify('Hello World', ['separator' => '_']); // -> "hello_world"
-```
-
-You can even activate a custom ruleset without touching the default rules:
-
-```php
-$slugify = $container->get('cocur_slugify');
-$slugify->slugify('für', ['ruleset' => 'turkish']); // -> "fur"
-$slugify->slugify('für'); // -> "fuer"
-```
 
 ### Contributing
 
