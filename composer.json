@@ -1,0 +1,30 @@
+{
+    "name": "cocur/slugify-symfony-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony bundle for original cocur/slugify, which Converts a string into a slug.",
+    "keywords": ["slug", "slugify"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Benedikt Lenzen",
+            "email": "benedikt.lenzen@bl-websolutions.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "cocur/slugify": "~3.1",
+        "symfony/config": "4.2",
+        "symfony/dependency-injection": "~4.2",
+        "symfony/http-kernel": "~4.2"
+    },
+    "require-dev": {
+        "mockery/mockery": "~0.9",
+        "phpunit/phpunit": "~5.2"
+    },
+    "autoload": {
+        "psr-4": {"Cocur\\SlugifySymfonyBundle\\": ""},
+        "exclude-from-classmap": [
+            "Tests/"
+        ]
+    }
+}
