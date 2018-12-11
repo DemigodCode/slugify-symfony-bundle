@@ -82,7 +82,7 @@ public function __construct(\Cocur\Slugify\SlugifyInterface $slugify)
 You can set the following configuration settings in `config.yml` to adjust the slugify service:
 
 ```yaml
-cocur_slugify:
+cocur_slugify_bundle:
     default:
         lowercase: <boolean>
         separator: <string>
