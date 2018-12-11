@@ -1,4 +1,4 @@
-cocur/slugify
+cocur/slugify-symfony-bundle
 =============
 
 > Converts a string into a slug.
