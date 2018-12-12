@@ -9,11 +9,5 @@
         <service id="slugify" alias="Cocur\Slugify\Slugify" />
         <service id="cocur_slugify" alias="Cocur\Slugify\Slugify" />
         <service id="Cocur\Slugify\SlugifyInterface" alias="Cocur\Slugify\Slugify" />
-        
-        <service id="Cocur\SlugifySymfonyBundle\Twig\SlugifyExtension">
-            <tag name="twig.extension" />
-            <argument type="service" id="Cocur\Slugify\Slugify" />
-        </service>
-        <service id="cocur_slugify.twig.slugify" alias="Cocur\SlugifySymfonyBundle\Twig\SlugifyExtension" />
     </services>
 </container>

@@ -28,6 +28,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('default')
+                    ->addDefaultsIfNotSet()
                     ->children()
                         ->booleanNode('lowercase')->end()
                         ->booleanNode('lowercase_after_regexp')->end()
@@ -36,8 +37,10 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('separator')->end()
                         ->scalarNode('regexp')->end()
                         ->arrayNode('rulesets')->prototype('scalar')->end()
+                        ->end()
                     ->end()
                 ->end()
+                ->booleanNode('register_twig_service')->defaultTrue()->end()
             ->end();
 
         return $treeBuilder;

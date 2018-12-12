@@ -67,6 +67,18 @@ class SlugifyExtensionTest extends TestCase
     }
     
     /**
+     * @test
+     * @covers Cocur\SlugifySymfonyBundle\DependencyInjection\SlugifyExtension::load()
+     */
+    public function loadWithoutTwigExtension()
+    {
+        $this->extension->load([['register_twig_service' => false]], $this->container);
+        
+        $this->assertTrue($this->container->hasDefinition(Slugify::class));
+        $this->assertFalse($this->container->hasDefinition(TwigSlugifyExtension::class));      
+    }
+    
+    /**
      * Asserts the correct registration of the twig extension with all its aliases
      * @param ContainerBuilder $container
      */

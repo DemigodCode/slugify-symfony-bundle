@@ -39,6 +39,9 @@ class SlugifyExtension extends Extension
         
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+        if($config['register_twig_service']) {
+            $loader->load('twig_services.xml');
+        }
 
         if (empty($config['default']['rulesets'])) {
             unset($config['default']['rulesets']);

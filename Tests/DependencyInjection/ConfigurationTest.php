@@ -35,6 +35,7 @@ class ConfigurationTest extends TestCase {
                     'regexp' => 'abcd',
                     'rulesets' => ['burmese', 'hindi']
                 ],
+                'register_twig_service' => true
             ]
         ];
 
@@ -64,6 +65,19 @@ class ConfigurationTest extends TestCase {
         $configs = [['default' => ['strip_tags' => 'abc']]];
         $this->process($configs);
     }
+    
+    /**
+     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidTypeException
+     */
+    public function testRegisterTwigServiceOnlyAcceptsBoolean() {
+        $configs = [['register_twig_service' => 'abc']];
+        $this->process($configs);
+    }
+    
+    public function testRegisterTwigServiceDefault() {
+        $configs = [];
+        $this->assertTrue($this->process($configs)['register_twig_service']);
+    }
 
     /**
      * Processes an array of configurations and returns a compiled version.
@@ -74,7 +88,6 @@ class ConfigurationTest extends TestCase {
      */
     protected function process($configs) {
         $processor = new Processor();
-
         return $processor->processConfiguration(new Configuration(), $configs);
     }
 
