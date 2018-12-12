@@ -14,8 +14,10 @@ namespace Cocur\SlugifySymfonyBundle\DependencyInjection;
 use Cocur\Slugify\Slugify;
 use Cocur\Slugify\SlugifyInterface;
 use Cocur\SlugifySymfonyBundle\DependencyInjection\Configuration;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
@@ -37,6 +39,9 @@ class SlugifyExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+        
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.xml');
 
         if (empty($config['default']['rulesets'])) {
             unset($config['default']['rulesets']);
@@ -45,20 +50,7 @@ class SlugifyExtension extends Extension
         // Extract slugify arguments from config
         $slugifyArguments = array_intersect_key($config['default'], array_flip(['lowercase', 'trim', 'strip_tags', 'separator', 'regexp', 'rulesets']));
 
-        $container->setDefinition(Slugify::class, new Definition(Slugify::class, [$slugifyArguments]));
-        $container
-            ->setDefinition(
-                'cocur_slugify.twig.slugify',
-                new Definition(
-                    'Cocur\Slugify\Bridge\Twig\SlugifyExtension',
-                    [new Reference('cocur_slugify')]
-                )
-            )
-            ->addTag('twig.extension')
-            ->setPublic(false);
-        $container->setAlias('cocur_slugify', Slugify::class);
-        $container->setAlias('slugify', Slugify::class);
-        $container->setAlias(SlugifyInterface::class, Slugify::class);
+        $container->getDefinition(Slugify::class)->addArgument($slugifyArguments);
     }
 
 }

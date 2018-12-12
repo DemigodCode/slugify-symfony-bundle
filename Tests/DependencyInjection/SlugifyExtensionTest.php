@@ -14,8 +14,10 @@ namespace Cocur\SlugifySymfonyBundle\Tests\DependencyInjection;
 use Cocur\Slugify\Slugify;
 use Cocur\Slugify\SlugifyInterface;
 use Cocur\SlugifySymfonyBundle\DependencyInjection\SlugifyExtension;
-use Mockery as m;
+use Cocur\SlugifySymfonyBundle\Twig\SlugifyExtension as TwigSlugifyExtension;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * SlugifyExtensionTest
@@ -32,8 +34,14 @@ class SlugifyExtensionTest extends TestCase
      */
     protected $extension;
     
+    /**
+     * @var ContainerBuilder
+     */
+    protected $container;
+    
     protected function setUp()
     {
+        $this->container = new ContainerBuilder();
         $this->extension = new SlugifyExtension();
     }
 
@@ -43,40 +51,35 @@ class SlugifyExtensionTest extends TestCase
      */
     public function load()
     {
-        $twigDefinition = m::mock('Symfony\Component\DependencyInjection\Definition');
-        $twigDefinition
-            ->shouldReceive('addTag')
-            ->with('twig.extension')
-            ->once()
-            ->andReturn($twigDefinition);
-        $twigDefinition
-            ->shouldReceive('setPublic')
-            ->with(false)
-            ->once();
-
-        $container = m::mock('Symfony\Component\DependencyInjection\ContainerBuilder');
-        $container
-            ->shouldReceive('setDefinition')
-            ->with(Slugify::class, m::type('Symfony\Component\DependencyInjection\Definition'))
-            ->once();
-        $container
-            ->shouldReceive('setDefinition')
-            ->with('cocur_slugify.twig.slugify', m::type('Symfony\Component\DependencyInjection\Definition'))
-            ->once()
-            ->andReturn($twigDefinition);
-        $container
-            ->shouldReceive('setAlias')
-            ->with('slugify', Slugify::class)
-            ->once();
-        $container
-            ->shouldReceive('setAlias')
-            ->with('cocur_slugify', Slugify::class)
-            ->once();
-        $container
-            ->shouldReceive('setAlias')
-            ->with(SlugifyInterface::class, Slugify::class)
-            ->once();
-
-        $this->extension->load([['default' => []]], $container);
+        $this->extension->load([['default' => []]], $this->container);
+        
+        // Check for slugify service registration and all it's legacy aliases
+        $this->assertTrue($this->container->hasDefinition(Slugify::class));
+        $this->assertTrue($this->container->hasAlias(SlugifyInterface::class));
+        $this->assertEquals(Slugify::class, (string)$this->container->getAlias(SlugifyInterface::class));
+        $this->assertTrue($this->container->hasAlias('slugify'));
+        $this->assertEquals(Slugify::class, (string)$this->container->getAlias('slugify'));
+        $this->assertTrue($this->container->hasAlias('cocur_slugify'));
+        $this->assertEquals(Slugify::class, (string)$this->container->getAlias('cocur_slugify'));
+        
+        $this->assertTwigExtensionRegistration($this->container);
+        
+    }
+    
+    /**
+     * Asserts the correct registration of the twig extension with all its aliases
+     * @param ContainerBuilder $container
+     */
+    private function assertTwigExtensionRegistration(ContainerBuilder $container) {
+        // Check for Twig Extension and legacy service id
+        $this->assertTrue($this->container->hasDefinition(TwigSlugifyExtension::class));
+        $this->assertTrue($this->container->hasAlias('cocur_slugify.twig.slugify'));
+        
+        // Check for correct constructor argument and twig.extension tag
+        $twigExtensionargument = $container->getDefinition(TwigSlugifyExtension::class)->getArgument(0);
+        $this->assertInstanceOf(Reference::class, $twigExtensionargument);
+        $this->assertEquals(Slugify::class, (string) $twigExtensionargument);
+        $this->assertTrue($this->container->getDefinition(TwigSlugifyExtension::class)->hasTag('twig.extension'));
+        $this->assertEquals(TwigSlugifyExtension::class, (string)$this->container->getAlias('cocur_slugify.twig.slugify'));
     }
 }
