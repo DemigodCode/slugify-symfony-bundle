@@ -12,13 +12,10 @@
 namespace Cocur\SlugifySymfonyBundle\DependencyInjection;
 
 use Cocur\Slugify\Slugify;
-use Cocur\Slugify\SlugifyInterface;
 use Cocur\SlugifySymfonyBundle\DependencyInjection\Configuration;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
