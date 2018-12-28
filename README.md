@@ -3,7 +3,7 @@ cocur/slugify-symfony-bundle
 
 > Converts a string into a slug.
 
-[![Build Status](https://img.shields.io/travis/cocur/slugify-symfony-bundle.svg?style=flat)](https://travis-ci.org/cocur/slugify-symfony-bundle)
+[![Build Status](https://img.shields.io/travis/DemigodCode/slugify-symfony-bundle.svg?style=flat)](https://travis-ci.org/cocur/slugify-symfony-bundle)
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/9yv498ff61byp742?svg=true)](https://ci.appveyor.com/project/florianeckerstorfer/slugify-symfony-bundle)
 [![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/cocur/slugify-symfony-bundle.svg?style=flat)](https://scrutinizer-ci.com/g/cocur/slugify-symfony-bundle/)
 [![Code Coverage](https://scrutinizer-ci.com/g/cocur/slugify-symfony-bundle/badges/coverage.png?b=master&style=flat-square)](https://scrutinizer-ci.com/g/cocur/slugify-symfony-bundle/?branch=master)
