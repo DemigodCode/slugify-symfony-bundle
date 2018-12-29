@@ -24,6 +24,9 @@ use Symfony\Component\Config\Definition\Processor;
  */
 class ConfigurationTest extends TestCase {
 
+    /**
+     * @doesNotPerformAssertions
+    */
     public function testAll() {
         $configs = [
             [
