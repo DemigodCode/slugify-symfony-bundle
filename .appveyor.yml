@@ -1,7 +1,10 @@
 build: false
 platform: x86
 clone_folder: c:\projects\cocur\slugify-symfony-bundle
-
+environment:
+  matrix:
+  - dependencies: highest
+    php_ver_target: 5.0
 cache:
   - '%LOCALAPPDATA%\Composer\files'
 
@@ -9,7 +12,7 @@ install:
   - ps: Set-Service wuauserv -StartupType Manual
   - cinst -y php composer
   - refreshenv
-  - cd c:\tools\php73
+  - cd c:\tools\php
   - copy php.ini-production php.ini /Y
   - echo date.timezone="UTC" >> php.ini
   - echo extension_dir=ext >> php.ini
