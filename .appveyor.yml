@@ -7,7 +7,7 @@ cache:
 
 install:
   - ps: Set-Service wuauserv -StartupType Manual
-  - cinst -y php --version 5.6.39
+  - cinst -y php --version 5.6.39 --params '""/InstallDir:C:\tools\php""'
   - cinst -y composer
   - refreshenv
   - cd c:\tools\php
