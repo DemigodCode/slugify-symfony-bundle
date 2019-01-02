@@ -88,6 +88,5 @@ class SlugifyExtensionTest extends TestCase
         $twigExtensionargument = $container->getDefinition(TwigSlugifyExtension::class)->getArgument(0);
         $this->assertInstanceOf(Reference::class, $twigExtensionargument);
         $this->assertTrue($this->container->getDefinition(TwigSlugifyExtension::class)->hasTag('twig.extension'));
-        $this->assertEquals(TwigSlugifyExtension::class, (string)$this->container->getAlias('cocur_slugify.twig.slugify'));
     }
 }
