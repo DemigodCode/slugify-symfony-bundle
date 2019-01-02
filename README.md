@@ -5,28 +5,17 @@ cocur/slugify-symfony-bundle
 
 [![Build Status](https://img.shields.io/travis/DemigodCode/slugify-symfony-bundle.svg?style=flat)](https://travis-ci.org/cocur/slugify-symfony-bundle)
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/9yv498ff61byp742?svg=true)](https://ci.appveyor.com/project/florianeckerstorfer/slugify-symfony-bundle)
-[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/cocur/slugify-symfony-bundle.svg?style=flat)](https://scrutinizer-ci.com/g/cocur/slugify-symfony-bundle/)
-[![Code Coverage](https://scrutinizer-ci.com/g/cocur/slugify-symfony-bundle/badges/coverage.png?b=master&style=flat-square)](https://scrutinizer-ci.com/g/cocur/slugify-symfony-bundle/?branch=master)
+[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/cocur/slugify-symfony-bundle.svg?style=flat)]((https://scrutinizer-ci.com/g/DemigodCode/slugify-symfony-bundle/build-status/master)
+[![Code Coverage](https://scrutinizer-ci.com/g/DemigodCode/slugify-symfony-bundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/cocur/slugify-symfony-bundle/?branch=master)
 
-[![Latest Release](https://img.shields.io/packagist/v/cocur/slugify-symfony-bundle.svg)](https://packagist.org/packages/cocur/slugify-symfony-bundle)
-[![MIT License](https://img.shields.io/packagist/l/cocur/slugify-symfony-bundle.svg)](http://opensource.org/licenses/MIT)
-[![Total Downloads](https://img.shields.io/packagist/dt/cocur/slugify-symfony-bundle.svg)](https://packagist.org/packages/cocur/slugify-symfony-bundle)
+[![Latest Release](https://img.shields.io/packagist/v/DemigodCode/slugify-symfony-bundle.svg)](https://packagist.org/packages/cocur/slugify-symfony-bundle)
+[![MIT License](https://img.shields.io/packagist/l/DemigodCode/slugify-symfony-bundle.svg)](http://opensource.org/licenses/MIT)
+[![Total Downloads](https://img.shields.io/packagist/dt/DemigodCode/slugify-symfony-bundle.svg)](https://packagist.org/packages/cocur/slugify-symfony-bundle)
+
+This bundle provides a integration to symfony as bundle, without dependencies to other framworks.
 
 Developed by Benedikt Lenzen in Aachen, Europe with the help of
-[many great contributors](https://github.com/cocur/slugify-symfony-bundle/graphs/contributors).
-
-
-Features
---------
-
-- Removes all special characters from a string.
-- Provides custom replacements for Arabic, Austrian, Azerbaijani, Brazilian Portuguese, Bulgarian, Burmese, Chinese, Croatian, 
-Czech, Esperanto, Estonian, Finnish, French, Georgian, German, Greek, Hindi, Hungarian, Italian, Latvian, Lithuanian, 
-Macedonian, Norwegian, Polish, Romanian, Russian, Serbian, Spanish, Swedish, Turkish, Ukrainian and Vietnamese special 
-characters. Instead of removing these characters, Slugify approximates them (e.g., `ae` replaces `ä`).
-- No external dependencies.
-- PSR-4 compatible.
-- Compatible with PHP 7
+[many great contributors](https://github.com/DemigodCode/slugify-symfony-bundle/graphs/contributors).
 
 
 Installation
@@ -95,32 +84,6 @@ Usage
 
 For general usage of cocur/slugify please see [here](https://github.com/cocur/slugify/).
 
-### More options
-
-By default Slugify will convert the slug to lowercase. If you want to preserve the case of the string you can set the
-`lowercase` option to false.
-
-By default Slugify will use dashes as separators. If you want to use a different default separator, you can set the
-`separator` option.
-
-By default Slugify will remove leading and trailing separators before returning the slug. If you do not want the slug to 
-be trimmed you can set the `trim` option to false.
-
-### Contributing
-
-Feel free to ask for additional configurations in the issues, but please note that the
-maintainer of this repository does not speak all languages. If you can provide a Pull Request that would be amazing.
-
-Submit PR. Thank you very much. 💚
-
-### Code of Conduct
-
-In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
-
-The full Code of Conduct can be found [here](https://github.com/cocur/slugify/blob/master/CODE_OF_CONDUCT.md).
-
-This project is no place for hate. If you have any problems please contact Florian: [florian@eckerstorfer.net](mailto:florian@eckerstorfer.net) ✌🏻🏳️‍🌈
-
 ### Further information
 
 - [API docs](http://cocur.co/slugify-symfony-bundle/api/master/)
@@ -133,22 +96,6 @@ Authors
 
 - [Benedikt Lenzen](https://github.com/DemigodCode)
 - And many [great contributors](https://github.com/cocur/slugify-symfony-bundle/graphs/contributors)
-
-Support
--------
-
-If you need support you can ask on [Twitter](https://twitter.com/cocurco) (well, only if your question is short) or you
-can join our chat on Gitter.
-
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cocur/slugify)
-
-In case you want to support the development of Slugify we would highly appreciate it if you can send us directly a Pull Request on
-Github. If you have never contributed to a project on Github we are happy to help you. Just ask on Twitter or directly
-join our Gitter.
-
-You always can help me (Florian, the original developer and maintainer) out by
-[sending me an Euro or two](https://paypal.me/florianec/2).
-
 
 License
 -------
