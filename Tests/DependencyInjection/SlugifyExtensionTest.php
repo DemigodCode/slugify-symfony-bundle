@@ -56,11 +56,8 @@ class SlugifyExtensionTest extends TestCase
         // Check for slugify service registration and all it's legacy aliases
         $this->assertTrue($this->container->hasDefinition(Slugify::class));
         $this->assertTrue($this->container->hasAlias(SlugifyInterface::class));
-        $this->assertEquals(Slugify::class, (string)$this->container->getAlias(SlugifyInterface::class));
         $this->assertTrue($this->container->hasAlias('slugify'));
-        $this->assertEquals(Slugify::class, (string)$this->container->getAlias('slugify'));
         $this->assertTrue($this->container->hasAlias('cocur_slugify'));
-        $this->assertEquals(Slugify::class, (string)$this->container->getAlias('cocur_slugify'));
         
         $this->assertTwigExtensionRegistration($this->container);
         
